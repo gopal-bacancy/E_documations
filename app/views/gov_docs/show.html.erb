@@ -1,0 +1,20 @@
+
+<%= link_to 'Edit', edit_gov_doc_path(@gov_doc) %> |
+<%= link_to 'Back', gov_docs_path %>
+
+
+
+
+<div class="jumbotron">
+  <h1 class="display-4"> <%= @gov_docs.documentname %>  <%= @friend.lastname %>
+ </h1>
+  <p class="lead">  <%= @friend.email %> |  <%= @friend.phone %> |  <%= @friend.twitter %>
+
+</p>
+  <hr class="my-4">  
+
+<%= link_to 'Edit', edit_friend_path(@friend),class:"btn btn-secondary" %> |
+<%= link_to 'Back', friends_path,class:"btn btn-dark" %>
+  
+  </p>
+</div>

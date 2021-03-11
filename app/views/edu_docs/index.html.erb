@@ -1,0 +1,32 @@
+<h1>Edu Docs</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+
+     <th>Document Name</th>
+      <th>Document Id</th>
+      <th>Document Photo</th>
+      <th colspan="3">Sr.No.</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+  
+    <% @edu_docs.each do |edu_doc| %>
+      <tr>
+        <td><%= edu_doc.documentname %></td>
+        <td><%= edu_doc.documentid %></td>
+        <td><image src=<%=url_for(edu_doc.documents)%> height='50px' width='140px'></td>
+        <td><%= link_to 'Show', edu_doc %></td>
+        <td><%= link_to 'Edit', edit_edu_doc_path(edu_doc) %></td>
+        <td><%= button_to 'Destroy', edu_doc, :method=>"delete", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Edu Doc', new_edu_doc_path %>

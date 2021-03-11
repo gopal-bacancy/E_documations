@@ -1,0 +1,2 @@
+module EMainsHelper
+end

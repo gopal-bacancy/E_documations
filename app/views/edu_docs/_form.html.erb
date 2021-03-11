@@ -1,0 +1,29 @@
+<%= form_with(model: edu_doc) do |form| %>
+  <% if edu_doc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(edu_doc.errors.count, "error") %> prohibited this edu_doc from being saved:</h2>
+
+      <ul>
+        <% edu_doc.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field form-group">
+    <%= form.label :Document_Name %>
+    <%= form.text_field :documentname, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :Document_Id %>
+    <%= form.text_field :documentid, class:"form-control" %>
+  </div>
+  <div class="field form-group">
+    <%=form.label "Document Photo"%>
+    <%=form.file_field :documents%>
+  </div>  
+  <div class="actions form-group">
+    <%= form.submit class:'btn btn-dark' %>
+  </div>
+<% end %>
