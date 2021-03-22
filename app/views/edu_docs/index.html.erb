@@ -7,7 +7,6 @@
      <th>Document Name</th>
       <th>Document Id</th>
       <th>Document Photo</th>
-      <th colspan="3">Sr.No.</th>
       
     </tr>
   </thead>
@@ -18,7 +17,11 @@
       <tr>
         <td><%= edu_doc.documentname %></td>
         <td><%= edu_doc.documentid %></td>
-        <td><image src=<%=url_for(edu_doc.documents)%> height='50px' width='140px'></td>
+        <%if edu_doc.documents.attached?%>
+           <td><%= link_to image_tag(edu_doc.documents,style: 'height:100px;width:200px;'), edu_doc %></td>
+        <%else%><td></td>
+        <%end%>
+       
         <td><%= link_to 'Show', edu_doc %></td>
         <td><%= link_to 'Edit', edit_edu_doc_path(edu_doc) %></td>
         <td><%= button_to 'Destroy', edu_doc, :method=>"delete", data: { confirm: 'Are you sure?' } %></td>

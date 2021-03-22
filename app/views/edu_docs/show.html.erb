@@ -1,3 +1,18 @@
 
 <%= link_to 'Edit', edit_edu_doc_path(@edu_doc) %> |
 <%= link_to 'Back', edu_docs_path %>
+
+
+
+<center>
+<div class="jumbotron">
+  <h1 class="display-4"> <%= %>  
+ </h1>
+  <p class="lead">  <%=@edu_doc.documentname  %> |  <%=@edu_doc.documentid %> | <br><br>  <%=image_tag(@edu_doc.documents,style: 'height:200px;width:300px;') %>
+
+</p>
+  <hr class="my-4">  
+
+  </p>
+</div>
+</center>

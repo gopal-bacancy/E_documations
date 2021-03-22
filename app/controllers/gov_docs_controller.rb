@@ -1,9 +1,11 @@
 class GovDocsController < ApplicationController
   before_action :set_gov_doc, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index,:show]
+
 
   # GET /gov_docs or /gov_docs.json
   def index
-    @gov_docs = GovDoc.all
+    @gov_docs = current_user.gov_docs
   end
 
   # GET /gov_docs/1 or /gov_docs/1.json
@@ -21,8 +23,7 @@ class GovDocsController < ApplicationController
 
   # POST /gov_docs or /gov_docs.json
   def create
-    @gov_doc = GovDoc.new(gov_doc_params)
-
+    @gov_doc = current_user.gov_docs.new(gov_doc_params)
     respond_to do |format|
       if @gov_doc.save
         format.html { redirect_to gov_docs_path, notice: "Gov doc was successfully created." }
@@ -46,7 +47,7 @@ class GovDocsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /gov_docs/1 or /gov_docs/1.json
   def destroy
     @gov_doc.destroy
@@ -64,6 +65,6 @@ class GovDocsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gov_doc_params
-      params.require(:gov_doc).permit(:documentname, :documentid,:documents)   
+      params.require(:gov_doc).permit(:documentname, :documentid,:documents,:user_id)   
     end
 end

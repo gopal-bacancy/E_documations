@@ -1,27 +1,23 @@
 class EduDocsController < ApplicationController
   before_action :set_edu_doc, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index,:show]
   # GET /edu_docs or /edu_docs.json
   def index
-    @edu_docs = EduDoc.all
+    @edu_docs = current_user.edu_docs
   end
 
   # GET /edu_docs/1 or /edu_docs/1.json
-  def show
-  end
-
   # GET /edu_docs/new
   def new
     @edu_doc = EduDoc.new
   end
 
   # GET /edu_docs/1/edit
-  def edit
-  end
+
 
   # POST /edu_docs or /edu_docs.json
   def create
-    @edu_doc = EduDoc.new(edu_doc_params)
+    @edu_doc = current_user.edu_docs.new(edu_doc_params)
 
     respond_to do |format|
       if @edu_doc.save
@@ -64,7 +60,7 @@ class EduDocsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def edu_doc_params
-      
-      params.require(:edu_doc).permit(:documentname, :documentid,:documents)
+
+      params.require(:edu_doc).permit(:documentname, :documentid,:documents,:user_id)
     end
 end

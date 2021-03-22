@@ -20,6 +20,11 @@
     <%= form.text_field :documentid, class:"form-control" %>
   </div>
   <div class="field form-group">
+  
+    <%= form.number_field :user_id, id: :edu_docs_user_id, class:"form-control",value: current_user.id,type: :hidden %>
+  </div>
+  
+  <div class="field form-group">
     <%=form.label "Document Photo"%>
     <%=form.file_field :documents%>
   </div>  
