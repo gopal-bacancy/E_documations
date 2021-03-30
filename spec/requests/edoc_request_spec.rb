@@ -46,7 +46,7 @@ RSpec.describe "Edocs", type: :request do
 	    context 'with valid params' do
 	      let(:edu_doc) do 	
           user=create(:user)
-          patch '/edu_docs/'+user.id.to_s, params: {edu_doc: attributes_for(:EduDoc)}
+          patch '/edu_docs/'+user.id.to_s, params:{edu_doc: attributes_for(:EduDoc)}
 	      end
         #it {# expect(response).to redirect_to edu_docs_path}
       end
@@ -67,9 +67,19 @@ RSpec.describe "Edocs", type: :request do
   #   end
 
     describe "PUT 'update/:id'" do
-      it "allows an article to be updated" do
+      it "allows to be updated" do
+        oc=create(:EduDoc)
        # put :update, :id => EduDoc.ids, :EduDoc => @EduDoc.attributes = { :documenttype => "new title", :documentname => "new content",:documentid => "new content" }
-       put '/edu_docs/'+user.id.to_s, params: {edu_doc: attributes_for(:EduDoc)}
+       put '/edu_docs/'+oc.id.to_s, params:{edu_doc: attributes_for(:EduDoc)}
+       # response.should be_successful
+      end
+    end
+
+    describe "DELETE 'delete/:id'" do
+      it "allows to be deleted" do
+        EduDoc=create(:EduDoc)
+       # put :update, :id => EduDoc.ids, :EduDoc => @EduDoc.attributes = { :documenttype => "new title", :documentname => "new content",:documentid => "new content" }
+        delete '/edu_docs/'+EduDoc.id.to_s
         response.should be_successful
       end
     end
